@@ -3,7 +3,6 @@ package com.scw.mypagingpractice
 import com.scw.mypagingpractice.di.module.apiModule
 import com.scw.mypagingpractice.network.api.GithubApi
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.test.runTest
 import org.junit.Assert
 import org.junit.Rule
@@ -21,13 +20,8 @@ class GithubApiTest : KoinTest {
 
     @Test
     fun `test search kotlin repos`() = runTest {
-        get<GithubApi>()
-            .searchKotlinRepos(1, 10)
-            .catch { e ->
-                Assert.fail(e.message)
-            }
-            .collect { res ->
-                Assert.assertTrue(res.items.size == 10)
-            }
+        val itemPerPage = 30
+        val res = get<GithubApi>().reposByName("kotlin", 1, itemPerPage)
+        Assert.assertTrue(res.items.size == itemPerPage)
     }
 }

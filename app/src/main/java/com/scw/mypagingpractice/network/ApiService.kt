@@ -6,9 +6,8 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import timber.log.Timber
 
-class ApiClient {
+class ApiService {
 
     companion object {
         private const val BASE_URL = "https://api.github.com/"
@@ -16,7 +15,10 @@ class ApiClient {
 
     private val okHttpClient: OkHttpClient by lazy {
         OkHttpClient.Builder()
-            .addInterceptor(HttpLoggingInterceptor { Timber.tag("OKHttp").d(it) })
+            .addInterceptor(
+                HttpLoggingInterceptor()
+                    .setLevel(HttpLoggingInterceptor.Level.BASIC)
+            )
             .build()
     }
 
