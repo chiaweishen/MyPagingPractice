@@ -1,9 +1,12 @@
-package com.scw.mypagingpractice.network.api.entity
+package com.scw.mypagingpractice.model.entity
 
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 
+@Entity(tableName = "repo_table")
 data class Repo(
-    @SerializedName("id") val id: Long,
+    @PrimaryKey @SerializedName("id") val id: Long,
     @SerializedName("name") val name: String,
     @SerializedName("full_name") val fullName: String,
     @SerializedName("description") val description: String?,

@@ -1,4 +1,4 @@
-package com.scw.mypagingpractice.network.api.entity
+package com.scw.mypagingpractice.model.entity
 
 import com.google.gson.annotations.SerializedName
 

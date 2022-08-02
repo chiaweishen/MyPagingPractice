@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
 }
 
 android {
@@ -57,6 +58,12 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-viewmodel-savedstate:$lifecycleVersion"
     implementation "androidx.paging:paging-runtime-ktx:$pagingVersion"
 
+    // Room components
+    implementation "androidx.room:room-ktx:$roomVersion"
+    implementation "androidx.room:room-paging:$roomVersion"
+    kapt "androidx.room:room-compiler:$roomVersion"
+    androidTestImplementation "androidx.room:room-testing:$roomVersion"
+
     // retrofit
     implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
     implementation "com.squareup.retrofit2:converter-gson:$retrofitVersion"
@@ -68,6 +75,9 @@ dependencies {
 
     // timber
     implementation "com.jakewharton.timber:timber:$timberVersion"
+
+    // stetho
+    implementation "com.facebook.stetho:stetho:$stethoVersion"
 
     testImplementation 'junit:junit:4.13.2'
     testImplementation "io.insert-koin:koin-test:$koinVersion"

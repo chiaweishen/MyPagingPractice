@@ -1,6 +1,6 @@
 package com.scw.mypagingpractice
 
-import com.scw.mypagingpractice.di.module.apiModule
+import com.scw.mypagingpractice.di.module.*
 import com.scw.mypagingpractice.network.api.GithubApi
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runTest
@@ -15,13 +15,13 @@ import org.koin.test.get
 class GithubApiTest : KoinTest {
     @get:Rule
     val koinTestRule = KoinTestRule.create {
-        modules(apiModule)
+        modules(dbModule, mediatorModule, apiModule, repoModule, viewModelModule, dataSourceModule)
     }
 
     @Test
     fun `test search kotlin repos`() = runTest {
         val itemPerPage = 30
-        val res = get<GithubApi>().reposByName("kotlin", 1, itemPerPage)
+        val res = get<GithubApi>().kotlinRepos(1, itemPerPage)
         Assert.assertTrue(res.items.size == itemPerPage)
     }
 }

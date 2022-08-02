@@ -1,25 +1,30 @@
 package com.scw.mypagingpractice.model.repository
 
+import androidx.paging.ExperimentalPagingApi
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
-import com.scw.mypagingpractice.model.datasource.GithubPagingSource
-import com.scw.mypagingpractice.model.datasource.GithubPagingSource.Companion.NETWORK_PAGE_SIZE
-import com.scw.mypagingpractice.network.api.entity.Repo
+import com.scw.mypagingpractice.db.RepoDatabase
+import com.scw.mypagingpractice.model.entity.Repo
+import com.scw.mypagingpractice.model.remote.mediator.RepoRemoteMediator
 import kotlinx.coroutines.flow.Flow
 import org.koin.core.component.KoinComponent
-import org.koin.core.component.get
 
-class GithubRepoRepository : KoinComponent {
+@ExperimentalPagingApi
+class GithubRepoRepository(
+    private val database: RepoDatabase,
+    private val remoteMediator: RepoRemoteMediator
+) : KoinComponent {
 
-    fun getRepos(): Flow<PagingData<Repo>> {
+    fun getRepos(query: String): Flow<PagingData<Repo>> {
         return Pager(
             config = PagingConfig(
-                pageSize = NETWORK_PAGE_SIZE,
+                pageSize = 30,
                 enablePlaceholders = false,
-                prefetchDistance = NETWORK_PAGE_SIZE * 2
+                prefetchDistance = 30 * 2
             ),
-            pagingSourceFactory = { get<GithubPagingSource>() },
+            pagingSourceFactory = { database.repoDao().pagingSource(query) },
+            remoteMediator = remoteMediator,
             initialKey = 1
         ).flow
     }

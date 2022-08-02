@@ -6,7 +6,7 @@ import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.scw.mypagingpractice.databinding.ItemGithubRepoBinding
-import com.scw.mypagingpractice.network.api.entity.Repo
+import com.scw.mypagingpractice.model.entity.Repo
 
 class GithubRepoPagingAdapter :
     PagingDataAdapter<Repo, GithubRepoPagingAdapter.RepoViewHolder>(RepoComparator) {

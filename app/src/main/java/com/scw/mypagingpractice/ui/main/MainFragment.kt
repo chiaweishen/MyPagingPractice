@@ -8,6 +8,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.paging.CombinedLoadStates
+import androidx.paging.ExperimentalPagingApi
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.scw.mypagingpractice.databinding.FragmentMainBinding
@@ -16,6 +17,7 @@ import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import timber.log.Timber
 
+@OptIn(ExperimentalPagingApi::class)
 class MainFragment : Fragment() {
 
     companion object {
@@ -64,7 +66,7 @@ class MainFragment : Fragment() {
 
     private fun collectData() {
         viewLifecycleOwner.lifecycleScope.launch {
-            viewModel.getRepos().collectLatest { pagingData ->
+            viewModel.getRepos("kotlin").collectLatest { pagingData ->
                 pagingAdapter.submitData(pagingData)
             }
         }

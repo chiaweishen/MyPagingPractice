@@ -2,7 +2,7 @@
 plugins {
     id 'com.android.application' version '7.2.1' apply false
     id 'com.android.library' version '7.2.1' apply false
-    id 'org.jetbrains.kotlin.android' version '1.7.10' apply false
+    id 'org.jetbrains.kotlin.android' version '1.7.0' apply false
 }
 
 task clean(type: Delete) {
@@ -28,4 +28,6 @@ ext {
     koinVersion = '3.2.0'
     timberVersion = '5.0.1'
     swipeRefreshLayoutVersion = '1.1.0'
+    roomVersion = '2.4.3'
+    stethoVersion = '1.6.0'
 }
