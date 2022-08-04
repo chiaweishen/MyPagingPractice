@@ -16,14 +16,14 @@ class GithubRepoRepository(
     private val remoteMediator: RepoRemoteMediator
 ) : KoinComponent {
 
-    fun getRepos(query: String): Flow<PagingData<Repo>> {
+    fun getRepos(): Flow<PagingData<Repo>> {
         return Pager(
             config = PagingConfig(
                 pageSize = 30,
                 enablePlaceholders = false,
-                prefetchDistance = 30 * 2
+                prefetchDistance = 60
             ),
-            pagingSourceFactory = { database.repoDao().pagingSource(query) },
+            pagingSourceFactory = { database.repoDao().pagingSource() },
             remoteMediator = remoteMediator,
             initialKey = 1
         ).flow

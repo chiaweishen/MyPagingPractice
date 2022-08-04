@@ -12,6 +12,7 @@ import com.scw.mypagingpractice.model.entity.Repo
 import com.scw.mypagingpractice.network.api.GithubApi
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import retrofit2.HttpException
 import timber.log.Timber
@@ -30,10 +31,10 @@ class RepoRemoteMediator(
 //        return if (System.currentTimeMillis() - database.lastUpdated() >= cacheTimeout) {
 //            InitializeAction.SKIP_INITIAL_REFRESH
 //        } else {
-//            InitializeAction.LAUNCH_INITIAL_REFRESH
+//            InitializeAction.SKIP_INITIAL_REFRESH
 //        }
 
-        return InitializeAction.LAUNCH_INITIAL_REFRESH
+        return InitializeAction.SKIP_INITIAL_REFRESH
     }
 
     override suspend fun load(loadType: LoadType, state: PagingState<Int, Repo>): MediatorResult {

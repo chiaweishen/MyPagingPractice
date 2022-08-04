@@ -66,7 +66,7 @@ class MainFragment : Fragment() {
 
     private fun collectData() {
         viewLifecycleOwner.lifecycleScope.launch {
-            viewModel.getRepos("kotlin").collectLatest { pagingData ->
+            viewModel.getRepos().collectLatest { pagingData ->
                 pagingAdapter.submitData(pagingData)
             }
         }

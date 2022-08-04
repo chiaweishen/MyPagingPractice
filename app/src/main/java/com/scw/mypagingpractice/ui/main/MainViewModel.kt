@@ -12,8 +12,8 @@ import kotlinx.coroutines.flow.Flow
 @ExperimentalPagingApi
 class MainViewModel(private val githubRepoRepository: GithubRepoRepository) : ViewModel() {
 
-    fun getRepos(query: String): Flow<PagingData<Repo>> {
-        return githubRepoRepository.getRepos(query)
+    fun getRepos(): Flow<PagingData<Repo>> {
+        return githubRepoRepository.getRepos()
 //        return githubRepoRepository.getRepos().cachedIn(viewModelScope)
     }
 
