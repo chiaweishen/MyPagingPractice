@@ -31,7 +31,7 @@ class RepoRemoteMediator(
 //        return if (System.currentTimeMillis() - database.lastUpdated() >= cacheTimeout) {
 //            InitializeAction.SKIP_INITIAL_REFRESH
 //        } else {
-//            InitializeAction.SKIP_INITIAL_REFRESH
+//            InitializeAction.LAUNCH_INITIAL_REFRESH
 //        }
 
         return InitializeAction.SKIP_INITIAL_REFRESH
