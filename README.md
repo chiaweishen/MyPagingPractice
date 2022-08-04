@@ -4,7 +4,8 @@
 
 ### Content
 - This is practice for paging 3.1.1, which includes features to load more and refresh paging.
-- It has not yet been implemented to use remote mediators.
+- ~~It has not yet been implemented to use remote mediators.~~
+- Implement remote mediator in the remote_mediator branch
 
 ### References
 - https://developer.android.com/topic/libraries/architecture/paging/v3-overview
